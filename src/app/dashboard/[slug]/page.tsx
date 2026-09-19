@@ -4,6 +4,7 @@ import { notFound, redirect } from "next/navigation";
 
 import { recrawlProject } from "@/app/dashboard/actions";
 import { auth } from "@/auth";
+import { AskPanel } from "@/components/ask-panel";
 import { AutoRefresh } from "@/components/auto-refresh";
 import { getDb } from "@/lib/db/client";
 import { chunks, documents, ingestRuns, projects, sources } from "@/lib/db/schema";
@@ -143,10 +144,17 @@ export default async function ProjectPage({
           <div className="mt-6 grid gap-3 sm:grid-cols-5">
             <Stat label="Discovered" value={run.pagesDiscovered} />
             <Stat label="Indexed" value={run.pagesIndexed} />
-            <Stat label="Unchanged" value={run.pagesSkipped} />
+            <Stat label="Skipped" value={run.pagesSkipped} />
             <Stat label="Failed" value={run.pagesFailed} />
             <Stat label="Chunks" value={chunkTotal?.total ?? 0} />
           </div>
+        </section>
+      ) : null}
+
+      {(chunkTotal?.total ?? 0) > 0 ? (
+        <section className="mt-12">
+          <h2 className="mb-3 text-sm font-medium text-white">Ask</h2>
+          <AskPanel slug={project.slug} />
         </section>
       ) : null}
 

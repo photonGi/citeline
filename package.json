@@ -13,6 +13,7 @@
     "db:setup": "tsx --env-file=.env.local scripts/db-setup.ts",
     "db:inspect": "tsx --env-file=.env.local scripts/db-inspect.ts",
     "crawl": "tsx --env-file=.env.local scripts/crawl.ts",
+    "ask": "tsx --env-file=.env.local scripts/ask.ts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "npm run db:setup && drizzle-kit migrate",
     "db:studio": "drizzle-kit studio"

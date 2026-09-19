@@ -51,6 +51,17 @@ async function main() {
         `\n  linked account: ${account.email} via ${account.provider} (scope: ${account.scope ?? "none"})`,
       );
     }
+
+    const failures = await sql<{ url: string; error: string }[]>`
+      SELECT url, error FROM document WHERE status = 'failed' LIMIT 10
+    `;
+    if (failures.length > 0) {
+      console.log("\n  failed pages:");
+      for (const failure of failures) {
+        console.log(`    ${failure.url}\n      ${failure.error}`);
+      }
+    }
+
     console.log("");
   } finally {
     await sql.end({ timeout: 5 });
