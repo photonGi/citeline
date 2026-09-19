@@ -123,21 +123,19 @@ export function normalizeHtml(html: string): NormalizedPage {
       (candidate) => candidate.length > 0,
     ) ?? $("body");
 
-  const rootNode = root.get(0);
-  if (!rootNode) return { title: documentTitle, sections: [] };
+  if (root.length === 0) return { title: documentTitle, sections: [] };
 
   const pageHeading = cleanHeadingText(root.find("h1").first().text());
   const title = pageHeading || documentTitle;
 
   // Blocks nested inside another block (a <ul> inside an <li>, a <p> inside a
-  // <blockquote>) are already captured by their ancestor's conversion.
+  // <blockquote>) are already captured by their ancestor's conversion. Walking
+  // all ancestors is safe because containers like <main> and <body> are not in
+  // BLOCK_SELECTOR.
   const blocks = root
     .find(BLOCK_SELECTOR)
     .toArray()
-    .filter(
-      (element) =>
-        $(element).parentsUntil(rootNode).filter(BLOCK_SELECTOR).length === 0,
-    );
+    .filter((element) => $(element).parents(BLOCK_SELECTOR).length === 0);
 
   const sections: DocSection[] = [];
   const stack: { level: number; text: string; anchor: string | null }[] = [];
