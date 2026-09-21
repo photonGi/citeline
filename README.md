@@ -35,9 +35,26 @@ purpose LLM chat is worse in a specific way: it answers confidently with APIs th
 existed, and you cannot tell which sentences are real. Meanwhile documentation teams have no
 signal at all about which questions their docs fail to answer.
 
-Citeline is built around one rule: **an answer that cannot be traced back to a source is not
-shipped.** Every factual sentence carries a citation, every citation is validated against the
-text the model was actually given, and anything unsupported is replaced with an honest refusal.
+## Why I built it
+
+I kept running into the same two dead ends whenever I had to learn an unfamiliar library. A
+site's own search matches words rather than questions, so it misses anything phrased
+differently from the page it is sitting on. Asking a general chatbot instead is worse in a
+specific way: the answer arrives instantly and sounds authoritative, sometimes describing
+functions that have never existed, and there is no way to separate the real sentences from
+the invented ones. For anything you intend to actually build on, a confident maybe is worth
+less than no answer at all.
+
+So Citeline is built around a single rule: **an answer that cannot be traced back to a source
+is not shown.** Every claim carries a citation, every citation is checked against the text the
+model was actually given, and a reference the model invented is deleted rather than rendered
+as a link. When the documentation genuinely does not cover a question, the reply is an
+explicit refusal that names the closest topics the index *does* cover.
+
+Refusing to answer is the feature rather than a limitation. It is what makes the thing safe to
+put in front of someone, because every sentence it does produce can be checked in one click.
+The secondary benefit is that those refusals are worth reading on their own: a question your
+own documentation cannot answer is precisely the page somebody needs to go and write.
 
 ## What it produces
 

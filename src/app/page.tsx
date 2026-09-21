@@ -14,11 +14,11 @@ const capabilities = [
   },
   {
     title: "Honest refusals",
-    body: "When retrieval confidence falls below threshold, Citeline says it does not know and records the question as a documentation gap instead of inventing an API.",
+    body: "When no citation survives validation, Citeline says it does not know and names the closest topics the index does cover, instead of inventing an API that never existed.",
   },
   {
-    title: "Content-gap reporting",
-    body: "Unanswered questions are aggregated into a report, turning reader confusion into a prioritised writing backlog.",
+    title: "Every question logged",
+    body: "Each question is stored with its rewrite, the chunks retrieved, and whether it could be answered — so the questions your documentation fails are recorded rather than lost.",
   },
 ];
 
@@ -46,10 +46,16 @@ export default async function Home() {
           Answers from your documentation, with receipts.
         </h1>
         <p className="mt-6 text-lg leading-relaxed text-neutral-400">
-          Point Citeline at a documentation site, a GitHub repository, or an
-          OpenAPI specification. Your readers ask questions in plain language
-          and get answers grounded in your pages — every claim cited, and a
-          refusal instead of a guess when the answer is not there.
+          Point Citeline at a documentation site. Your readers ask questions in
+          plain language and get answers grounded in your pages — every claim
+          cited, and a refusal instead of a guess when the answer is not there.
+        </p>
+        <p className="mt-5 text-base leading-relaxed text-neutral-500">
+          Why it works this way: a general AI chatbot will describe an API that
+          never existed, confidently, and you cannot tell the invented sentences
+          from the real ones. So Citeline follows one rule — an answer it cannot
+          trace back to your pages is never shown. When the docs genuinely do
+          not cover something, it says so and names the closest topics they do.
         </p>
 
         <div className="mt-10 flex items-center gap-4">
