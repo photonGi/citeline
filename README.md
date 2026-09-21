@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/banner.svg" alt="Citeline — ask your documentation, every answer is cited" width="100%">
+  <img src="https://raw.githubusercontent.com/photonGi/citeline/main/docs/assets/banner.svg" alt="Citeline — ask your documentation, every answer is cited" width="100%">
 </p>
 
 <p align="center">
